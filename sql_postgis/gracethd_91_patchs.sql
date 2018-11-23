@@ -5,7 +5,7 @@
 
 /* Owner : GraceTHD-Community - http://gracethd-community.github.io/ */
 /* Author : stephane dot byache at aleno dot eu */
-/* Rev. date : 25/10/2018 */
+/* Rev. date : 23/11/2018 */
 
 /* ********************************************************************
     This file is part of GraceTHD.
@@ -154,16 +154,16 @@ DROP INDEX IF EXISTS zn_lt_code_idx; CREATE INDEX  zn_lt_code_idx ON t_znro_patc
 
 
 
-DROP INDEX IF EXISTS zs_lt_code_idx; CREATE INDEX  zs_lt_code_idx ON t_znro_patch202(zs_lt_code);
+DROP INDEX IF EXISTS zs_lt_code_idx; CREATE INDEX  zs_lt_code_idx ON t_zsro_patch202(zs_lt_code);
 
 
 
 
-DROP INDEX IF EXISTS zp_bp_code_idx; CREATE INDEX  zp_bp_code_idx ON t_znro_patch202(zp_bp_code);
+DROP INDEX IF EXISTS zp_bp_code_idx; CREATE INDEX  zp_bp_code_idx ON t_zpbo_patch201(zp_bp_code);
 
 
 
-DROP INDEX IF EXISTS st_rf_code_idx; CREATE INDEX  st_rf_code_idx ON t_znro_patch202(st_rf_code);
+DROP INDEX IF EXISTS st_rf_code_idx; CREATE INDEX  st_rf_code_idx ON t_sitetech_patch202(st_rf_code);
 
 
 
@@ -183,14 +183,14 @@ DROP INDEX IF EXISTS st_rf_code_idx; CREATE INDEX  st_rf_code_idx ON t_znro_patc
 
 
 
+DROP INDEX IF EXISTS lt_typephy_idx; CREATE INDEX  lt_typephy_idx ON t_ltech_patch202(lt_typephy);
 
-DROP INDEX IF EXISTS lt_typephy_idx; CREATE INDEX  lt_typephy_idx ON t_znro_patch202(lt_typephy);
 
 
 
 
+DROP INDEX IF EXISTS eq_etat_idx; CREATE INDEX  eq_etat_idx ON t_equipement_patch202(eq_etat);
 
-DROP INDEX IF EXISTS eq_etat_idx; CREATE INDEX  eq_etat_idx ON t_znro_patch202(eq_etat);
 
 
 
@@ -214,18 +214,14 @@ DROP INDEX IF EXISTS eq_etat_idx; CREATE INDEX  eq_etat_idx ON t_znro_patch202(e
 
 
 
+DROP INDEX IF EXISTS cb_bp1_idx; CREATE INDEX  cb_bp1_idx ON t_cable_patch201(cb_bp1);
+DROP INDEX IF EXISTS cb_ba1_idx; CREATE INDEX  cb_ba1_idx ON t_cable_patch201(cb_ba1);
+DROP INDEX IF EXISTS cb_bp2_idx; CREATE INDEX  cb_bp2_idx ON t_cable_patch201(cb_bp2);
+DROP INDEX IF EXISTS cb_ba2_idx; CREATE INDEX  cb_ba2_idx ON t_cable_patch201(cb_ba2);
 
-DROP INDEX IF EXISTS cb_bp1_idx; CREATE INDEX  cb_bp1_idx ON t_znro_patch202(cb_bp1);
-DROP INDEX IF EXISTS cb_ba1_idx; CREATE INDEX  cb_ba1_idx ON t_znro_patch202(cb_ba1);
-DROP INDEX IF EXISTS cb_bp2_idx; CREATE INDEX  cb_bp2_idx ON t_znro_patch202(cb_bp2);
-DROP INDEX IF EXISTS cb_ba2_idx; CREATE INDEX  cb_ba2_idx ON t_znro_patch202(cb_ba2);
 
 
 
 
 
-
-DROP INDEX IF EXISTS ps_usetype_idx; CREATE INDEX  ps_usetype_idx ON t_znro_patch202(ps_usetype);
-
-
-
+DROP INDEX IF EXISTS ps_usetype_idx; CREATE INDEX  ps_usetype_idx ON t_position_patch202(ps_usetype);

@@ -181,7 +181,6 @@ DROP INDEX IF EXISTS st_rf_code_idx; CREATE INDEX  st_rf_code_idx ON t_sitetech_
 
 
 
-
 DROP INDEX IF EXISTS lt_typephy_idx; CREATE INDEX  lt_typephy_idx ON t_ltech_patch202(lt_typephy);
 
 
