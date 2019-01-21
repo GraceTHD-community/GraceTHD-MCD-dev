@@ -2,6 +2,151 @@
 
 ### Changelog
 
+v2.0.2-rc1
+
+## Synthèse des principales évolutions v2.0.2-rc1
+Suite aux retours de consultation de la v2.0.2-beta1, il a été décidé de produire une release candidate 1. Concrètement ceci signifie que cette version pourrait prétendre à être la release finale. Une consultation courte permettra de remonter les derniers correctifs, mais il n'y aura plus d'ajouts fonctionnels au modèle de données. 
+
+Les retours de consultation sont composés de 56 demandes dont seulement 3 de la communauté via Redmine, 28 en interne au comité technique, 25 en collaboration étroite avec le Comité Consultatif Opérateurs et InfraNum (qui représente de nombreuses entreprises). Ils sont accessibles dans un document disponible sur Redmine : 
+https://redmine.gracethd.org/redmine/documents/40
+
+Nombre d'évolutions envisagées en v2.0.2 ont été reléguées en v2.1, c'est de nouveau le cas avec cette version. 
+https://redmine.gracethd.org/redmine/projects/modele_grace/wiki/Sujets_v2x#section-3
+
+Le changelog est structuré en 3 parties : 
+- ajouts v2.0.2-rc1
+- corrections v2.0.2-rc1
+- suppressions v2.0.2-rc1
+- Propositions d'évolutions v2.0.2-beta1 reléguées en v2.1.0
+
+Le changelog de la v2.0.2-rc1 est relatif à la v2.0.2-beta1. La v2.0.2 release finale disposera d'un changelog complet par rapport la v2.0.1. 
+
+# Ajouts v2.0.2-rc1
+Docs : 
+- add: Sommaire/Nomenclature des éléments du modèle : présentation du nommage des tables, listes, vues. [demande #481]
+- add: Vues : ajout d'une note : "Note : des vues « preview » permettant d’avoir une préversion des tables de la prochaine version en intégrant les attributs des tables patch est prévue pour la release finale."
+
+Listes : 
+- add: l_ptech_nature : r40, regard 40x40 [demande #489]
+- add: l_adresse_etat :	RC,	RAD EN COURS DE DEPLOIEMENT : "signifie qu une commande de PB a ete transmise par un OC sur une adresse raccordable a la demande. Toutes les adresses connues de la zone arriere du PB passent a cet etat.  (Interop:EtatImmeuble)" [Interop/CT 18/01/2019 CCO#46]
+- add: l_suf_racco : RC, RAD EN COURS DE DEPLOIEMENT : "signifie qu une commande de PB a ete transmise par un OC sur une adresse raccordable a la demande. Toutes les adresses connues de la zone arriere du PB passent a cet etat.  (Interop:EtatImmeuble)" [Interop/CT 18/01/2019 CCO#46]
+
+Attributs t_adresse_patch202 : 
+- add: ad_nblent : Les locaux d’entreprises (SUF) identifiés comme éligibles à une offre de raccordement spécifique (FTTE, FTTO, FON). [CCO/InfraNum 13/11/2018 CCO#10]
+
+Attributs t_zsro_patch202 :
+- add: zs_znllong : ajout [Interop / CCO 13/11/2018 CCO#30] 
+
+Attributs t_sitetech_patch202 : 
+- add: st_hexacle : ajout dans le cadre du déport d'attributs de t_adresse pour répondre notamment aux contraintes réglementaires sur certains types de sites (SRO en immeuble notamment). [CCO/InfraNum 13/11/2018 CCO#9]
+- add: st_nombat : ajout dans le cadre du déport d'attributs de t_adresse (attention à l'usage conjoint avec lt_bat). [CCO/InfraNum 13/11/2018 CCO#9]
+- chg: st_section :  suppression dans la définition de « Si le site technique accueille des SUF, alors la valeur doit être égale à l’attribut ad_idpar de l’adresse de ces SUF. ». [CTC#22]
+- chg: st_idpar :  suppression dans la définition de « Si le site technique accueille des SUF, alors la valeur doit être égale à l’attribut ad_idpar de l’adresse de ces SUF. ». [CTC#22]
+
+Attributs t_siteemission_patch202 : 
+- add: se_nombat : ajout dans le cadre du déport d'attributs de t_adresse (attention à l'usage conjoint avec lt_bat). [CCO/InfraNum 13/11/2018 CCO#9]
+
+Contraintes : 
+- add: co_1_m00025 : Tous les sites raccordés dans le cadre d’un déploiement FTTH, même s’ils sont raccordés en FTTO, GFU ou FON, doivent être instanciés dans la la t_suf. [CTC#23]
+
+# Corrections v2.0.2-rc1 : 
+Docs :
+- chg: gracethd-mcd-v2.0.2_doc*/MCD_Nomenclatures/niveaux de référencement : Suppression de l'exemple pour renvoyer vers une future fiche de cas d'usage [demande #229 / CCO#37]
+- chg: gracethd-mcd-v2.0.2_doc*/MCD_Nomenclatures/Codes d'organismes et de références : Modifications. [demande #229 / CCO#40]
+
+Listes : 
+- fix: l_infra_nature : faute de frappe définition ELE. [CTC#11]
+- fix: l_position_usetype : faute de frappe définition de R [SBY]
+- chg: l_noeud_type	: SP [CTC#18]
+- chg: l_site_type_log=FTTH : modification définition. [CTC#26]
+
+Tables : 
+- chg: t_baie : modification de la définition "Regroupe la liste des baies, des verticales de fermes optiques, de compartiments d’armoires de rue ou de coffrets contenus dans les locaux techniques. (1 enregistrement par item)." [CTC#20]
+
+Attributs t_adresse : 
+- fix: ad_y_parc : correction de fautes dans la nouvelle définition. [CTC#4] 
+- chg: ad_nblpro : modification de la définition. Ajout "Les locaux d'entreprises (SUF) identifiés comme éligibles à une offre de raccordement spécifique (FTTE, FTTO, FON) sont comptabilisés dans l’attribut ad_nblent." [CCO/InfraNum 13/11/2018 CCO#10]
+- chg: ad_nbprpro : modification de la définition. "Nombre de fibres FTTH pro pour les locaux (SUF) professionnels." [CCO/InfraNum 13/11/2018 CCO#10]
+
+Attributs t_cable : 
+- chg: cb_fo_disp : modification de la définition [CCO/InfraNum 19/01/2019 CCO#22 / demande #486]
+- chg: cb_fo_util : modification de la définition [CCO/InfraNum 19/01/2019 CCO#22 / demande #486]
+
+Contraintes : 
+- fix: co_1_g00008 : correction faute de frappe. [CTC#12]
+- chg: co_1_g00009 : définition issue du géostandard modifiée pour la rendre plus cohérente avec GraceTHD-MCD. [CTC#17]
+- chg: co_1_g00012 : ajout à la définition : "Une disjonction doit avoir au moins 3 cheminements." [CTC#18]
+- chg: co_1_m00015 : modification de la définition. [CTC#19]
+- chg: co_1_m00016 : modification de la définition. [CTC#21]
+- fix: co_1_m00024 : correction définition. [CCO 13/12/2018]
+
+# Suppressions v2.0.2-rc1 : 
+Listes :
+- del: add: l_position_usetype : ajout 'P','FTTH PRO' (nouvelle liste). [CCO 13/11/2018 CCO#25] : abandonné
+- del: add: l_avancement : ajout 'P', 'PRE-ETUDE', 'Modelisation temporaire dans l attente d'une etude detaillee.'. [CCO]. [CCO/InfraNum 13/11/18 CCO#29]
+
+Attributs patch202 - t_ptech_patch202 : 
+- del: add: pt_local : suppression car on parle de local pour un point technique. [CCO#21]
+
+Contraintes :
+- del: add: co_1_m00023 (ancien code temporaire : co_1_s00008) : Les SUF d’un habitat collectif FTTH ayant au moins un PBI (ou un PMI) sont associés à la même adresse (sf_ad_code) que le site technique (st_ad_code) qui accueille le ou les PBI (ou PMI). t_suf [CTC#23]
+
+Feuille MCD_Nomenclatures : 
+- chg: Codes d'organismes et de références : réduction de la présentation de GraceTHD-Data. [v2.0.2-beta1 | CCO/InfraNum 13/12/2018]
+- chg: Gestion Documentaire : ajout de précisions telles que vues avec InfraNum et le CCO pour alerter sur certains usages. 
+
+# Propositions d'évolutions v2.0.2-beta1 reléguées en v2.1.0 :
+Listes : 
+- del: add: l_ltech_typephy : ajout de cette nouvelle liste en v2.0.2 pour t_ltech_patch202.lt_typephy [CCO] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]
+
+Attributs patch202 - t_ltech_patch202 (table supprimée) : 
+- del: add: lt_nom : si besoin. Permet de clarifier l'usage d'un local fonctionnel notamment [CCO] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]. 
+- del: add: lt_typephy : type physique de local technique. REFERENCES l_ltech_typephy(code) [CCO] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]. 
+
+Attributs patch202 - t_ptech_patch202 : 
+- del: add: pt_codepro : Code de l’objet dans le Système d’Information du propriétaire de l’objet. A renseigner si celui-ci fournit l’information. [GE | demande #300 | CCO 16/10/18] - relégué en v2.1
+- del: add: pt_codegst : Code de l’objet dans le Système d’Information du gestionnaire de l’objet. A renseigner si celui-ci fournit l’information. [GE | demande #300 | CCO 16/10/18] - relégué en v2.1
+
+Attributs t_ebp : 
+- del: chg: bp_ca_nb : précision de la définition. "Tous les plateaux physiques doivent être comptabilisée. Les plateaux de lovage doivent donc être comptabilisés." [demande #388] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]
+
+Attributs patch202 - t_position_patch202 :
+- del: add: ps_nom [CCO | GEFO | demande #260] [CCO/InfraNum 13/12/2018 NOK]
+- del: add: ps_lin [CCO | GEFO | demande #260] [CCO/InfraNum 13/12/2018 NOK]
+- del: add: ps_col [CCO | GEFO | demande #260] [CCO/InfraNum 13/12/2018 NOK]
+
+Attributs patch202 - t_equipement_patch202 (table supprimée) : 
+- del: add: eq_nom VARCHAR(100) : nom de l'équipement [GEFO 19/10/2016] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]. 
+- del: add: eq_desc VARCHAR(254): description de l'équipement [GEFO 19/10/2016] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]. 
+- del: add: eq_etat : ajout [demande #241] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]
+- del: add: eq_taille : ajout [demande #241] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]
+- del: add: eq_placemt : ajout [demande #241] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]
+- del: add: eq_localis : ajout [demande #241] [v2.0.2-beta1 | CCO/InfraNum 13/12/2018 NOK]
+
+Contraintes : 
+- del: add: co_1_g00015 : relégué en v2.1 pour traiter avec un cas d'usage. 
+
+
+### TODO
+
+Géostandard : 
+- .odt : gros soucis de type de numérotation des parties. 
+- reprendre la partie B.1.4 du géostandard 
+- faire référence aux ajouts doc GraceTHD-MCD
+- fo_reper ne donne pas les valeurs possibles, ni l_tube. 
+- lt_etiquet longueur (demande #419)
+- Incohérences type géostandard (cm_mod_pos, cm_passage) (demande #412)
+- cs_type : passer à VARCHAR(1) (demande #305)
+- Ajouter une note décrivant comment "commander" des informations supplémentaires hors standard. [CCO 16/10/18 NOK]
+- Contrainte zcoax à revoir. 
+- Contrainte zdep à revoir. 
+- Contraintes de la grille de contraintes (reprises 2.0.2) à revoir. 
+- Contraintes de la grille de contraintes add: à ajouter. 
+- Note sur GraceTHD-Data
+- Note sur GraceTHD-Manage
+
+
+
 v2.0.2-beta1
 
 ## Synthèse des principales évolutions v2.0.2-beta1
@@ -172,8 +317,7 @@ Attributs patch202 - t_znro_patch202 :
 
 Attributs patch202 - t_zsro_patch202 : 
 - add: zs_lt_code : notion de local technique fonctionnel SRO. [CCO | usecase SRO colocalisé]. 
-- add: zs_lgmaxln : Longueur maximale des lignes situées dans la zone arrière du PM. 
-Elle est exprimée en kilomètres avec avec 2 chiffres après la virgule (Interop:LongueurMaxLignes) [Interop | CCO].
+- add: zs_lgmaxln : Longueur maximale des lignes situées dans la zone arrière du PM. Elle est exprimée en kilomètres avec avec 2 chiffres après la virgule (Interop:LongueurMaxLignes) [Interop | CCO].
 
 Attributs patch202 - t_sitetech_patch202 : 
 - add: st_rf_code : ajout. Si le site technique est un équipement télécom sur catalogue (shelter, armoire de rue), code de la référence dans la table t_reference. [demandes #179 #249]
@@ -262,45 +406,6 @@ Vues :
 
 # Spatialite : 
 - chg: gracethd-spatialite.qgs : mis à jour. 
-
-
-### Sujets v2.0.2 qui pourraient encore être traités
-Général : 
-- TODO: chg: Ajouter une liste des révisions au doc pour gérer les modifs propres au doc et pas au MCD en lui-même. 
-- TODO: add: ajouter un glossaire (glossaire du géostandard + accronymes + définition lignes pour le FTTH, cuivre, coax). 
-- TODO: add: ajout d'une page de présentation de GraceTHD avec les différentes extensions. Ou renvoi vers une page ou document de présentation. 
-- TODO: doc : ajouter un manuel admin et un manuel utilisateur comme pour les autres projets. 
-- TODO: add: ajouter des vues "previews" des tables 2.1.0 (vs_pre_adresse) pour rassurer pour la migration et faciliter l'usage des tables de patch. 
-- TODO: Modélisation des câbles dérivables : voir en CCO si on peut aboutir à une solution
-	- https://redmine.gracethd.org/redmine/projects/gracethd_groupeexperts_fibre/wiki/D%C3%A9rivations
-	- https://redmine.gracethd.org/redmine/boards/7/topics/33
-Valeurs :
-- TODO: chg: l_implantation_type : ajout valeur 'NC' (demande #339 / CCO 02/10/2018 NOK) : besoin d'infos complémentaires. 
-- TODO: chg: l_bp_typelog : 'PBM','PBO MIXTE','BPE ayant un usage complémentaire à celui de PBO' (demande #446) : besoin d'infos complémentaires. 
-t_adresse : 
-- TODO: raccos longs : voir si avancée Interop sinon on laisse v2.1.0 (demandes #374 #359)
-t_sitetech_patch202 : 
-- TODO: add: st_nombat : portage de ad_nombat pour les compléments d'adresse puisqu'un site technique peut être dans un immeuble. 
-t_siteemission_patch202 : 
-- TODO: add: se_nombat : portage de ad_nombat pour les compléments d'adresse puisqu'un site technique peut être dans un immeuble. 
-t_cheminement :
-- TODO: chg: cm_fo_util : préciser définition : voir avec InfraNum. 
-
-Géostandard : 
-- .odt : gros soucis de type de numérotation des parties. 
-- reprendre la partie B.1.4 du géostandard 
-- faire référence aux ajouts doc GraceTHD-MCD
-- fo_reper ne donne pas les valeurs possibles, ni l_tube. 
-- lt_etiquet longueur (demande #419)
-- Incohérences type géostandard (cm_mod_pos, cm_passage) (demande #412)
-- cs_type : passer à VARCHAR(1) (demande #305)
-- Ajouter une note décrivant comment "commander" des informations supplémentaires hors standard. [CCO 16/10/18 NOK]
-- Contrainte zcoax à revoir. 
-- Contrainte zdep à revoir. 
-- Contraintes de la grille de contraintes (reprises 2.0.2) à revoir. 
-- Contraintes de la grille de contraintes add: à ajouter. 
-- Note sur GraceTHD-Data
-- Note sur GraceTHD-Manage
 
 
 v2.0.1-release

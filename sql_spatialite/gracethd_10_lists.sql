@@ -1,11 +1,11 @@
-/*GraceTHD-MCD v2.0.2-beta1*/
+/*GraceTHD-MCD v2.0.2-rc1*/
 /*Creation des tables qui vont accueillir les listes de valeurs*/
 /* gracethd_10_lists.sql */
 /*Spatialite*/
 
 /* Owner : GraceTHD-Community - http://gracethd-community.github.io/ */
 /* Author : stephane dot byache at aleno dot eu */
-/* Rev. date : 25/10/2018 */
+/* Rev. date : 21/01/2019 */
 
 /* ********************************************************************
     This file is part of GraceTHD.
@@ -46,7 +46,6 @@ DROP TABLE IF EXISTS l_immeuble_type;
 DROP TABLE IF EXISTS l_implantation_type;
 DROP TABLE IF EXISTS l_infra_nature;
 DROP TABLE IF EXISTS l_infra_type_log;
-DROP TABLE IF EXISTS l_ltech_typephy;
 DROP TABLE IF EXISTS l_masque_face;
 DROP TABLE IF EXISTS l_noeud_type;
 DROP TABLE IF EXISTS l_nro_etat;
@@ -78,6 +77,7 @@ DROP TABLE IF EXISTS l_tube;
 DROP TABLE IF EXISTS l_zone_densite;
 
 
+
 CREATE TABLE l_adresse_etat(code VARCHAR(2), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_adresse_etat_pk" PRIMARY KEY (code));
 CREATE TABLE l_avancement(code VARCHAR(1), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_avancement_pk" PRIMARY KEY (code));
 CREATE TABLE l_baie_type(code VARCHAR(10), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_baie_type_pk" PRIMARY KEY (code));
@@ -100,7 +100,6 @@ CREATE TABLE l_immeuble_type(code VARCHAR(1), libelle VARCHAR(254), definition V
 CREATE TABLE l_implantation_type(code VARCHAR(2), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_implantation_type_pk" PRIMARY KEY (code));
 CREATE TABLE l_infra_nature(code VARCHAR(3), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_infra_nature_pk" PRIMARY KEY (code));
 CREATE TABLE l_infra_type_log(code VARCHAR(2), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_infra_type_log_pk" PRIMARY KEY (code));
-CREATE TABLE l_ltech_typephy(code VARCHAR(2), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_ltech_typephy_pk" PRIMARY KEY (code));
 CREATE TABLE l_masque_face(code VARCHAR(1), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_masque_face_pk" PRIMARY KEY (code));
 CREATE TABLE l_noeud_type(code VARCHAR(2), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_noeud_type_pk" PRIMARY KEY (code));
 CREATE TABLE l_nro_etat(code VARCHAR(2), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_nro_etat_pk" PRIMARY KEY (code));
@@ -130,4 +129,3 @@ CREATE TABLE l_technologie_type(code VARCHAR(3), libelle VARCHAR(254), definitio
 CREATE TABLE l_tiroir_type(code VARCHAR(10), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_tiroir_type_pk" PRIMARY KEY (code));
 CREATE TABLE l_tube(code VARCHAR(5), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_tube_pk" PRIMARY KEY (code));
 CREATE TABLE l_zone_densite(code VARCHAR(1), libelle VARCHAR(254), definition VARCHAR(254), CONSTRAINT "l_zone_densite_pk" PRIMARY KEY (code));
-

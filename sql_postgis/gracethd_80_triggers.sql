@@ -1,11 +1,11 @@
-/*GraceTHD-MCD v2.0.2-beta1*/
+/*GraceTHD-MCD v2.0.2-rc1*/
 /*specifique au SGBD*/
 /* gracethd_80_triggers.sql */
 /*PostGIS*/
 
 /* Owner : GraceTHD-Community - http://gracethd-community.github.io/ */
 /* Author : stephane dot byache at aleno dot eu */
-/* Rev. date : 25/10/2018 */
+/* Rev. date : 21/01/2019 */
 
 /* ********************************************************************
     This file is part of GraceTHD.

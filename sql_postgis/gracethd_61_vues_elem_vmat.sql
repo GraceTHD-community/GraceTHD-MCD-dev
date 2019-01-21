@@ -1,11 +1,11 @@
-/*GraceTHD v2.0.2-beta1*/
+/*GraceTHD v2.0.2-rc1*/
 /*Creation des vues élémentaires MATERIALIZED*/
 /*PostGIS*/
 
 /* gracethd_61_vues_elem_materialized.sql */
 /* Owner : GraceTHD-Community - http://gracethd-community.github.io/ */
 /* Author : stephane dot byache at aleno dot eu */
-/* Rev. date : 25/10/2018 */
+/* Rev. date : 21/01/2019 */
 
 /* ********************************************************************
     This file is part of GraceTHD.

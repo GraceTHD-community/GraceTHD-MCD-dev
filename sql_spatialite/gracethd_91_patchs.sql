@@ -1,11 +1,11 @@
-/*GraceTHD-MCD v2.0.2-beta1*/
+/*GraceTHD-MCD v2.0.2-rc1*/
 /*Patch : des tables optionnnelles comblant des lacunes de GraceTHD-MCD v2.0.0. Les attributs de ces tables intégreront très probablement les tables de la v2.1.0. */
 /* gracethd_91_patchs.sql */
 /*Spatialite*/
 
 /* Owner : GraceTHD-Community - http://gracethd-community.github.io/ */
 /* Author : stephane dot byache at aleno dot eu */
-/* Rev. date : 25/10/2018 */
+/* Rev. date : 21/01/2019 */
 
 /* ********************************************************************
     This file is part of GraceTHD.
@@ -33,17 +33,17 @@ DROP TABLE IF EXISTS t_zsro_patch202;
 DROP TABLE IF EXISTS t_zpbo_patch201;
 DROP TABLE IF EXISTS t_sitetech_patch202;
 DROP TABLE IF EXISTS t_ltech_patch201;
-DROP TABLE IF EXISTS t_ltech_patch202;
-DROP TABLE IF EXISTS t_equipement_patch202;
 DROP TABLE IF EXISTS t_ptech_patch202;
 DROP TABLE IF EXISTS t_cassette_patch201;
 DROP TABLE IF EXISTS t_cable_patch201;
 DROP TABLE IF EXISTS t_position_patch202;
 DROP TABLE IF EXISTS t_siteemission_patch202;
 
+
 /*###################### PATCHS 2.0.2 - CREATE ##################################*/
 
 CREATE TABLE t_adresse_patch202(	ad_code VARCHAR(254) NOT NULL  REFERENCES t_adresse(ad_code),
+	ad_nblent INTEGER   ,
 	ad_nblpub INTEGER   ,
 	ad_nbltec INTEGER   ,
 	ad_nblope INTEGER   ,
@@ -62,6 +62,7 @@ CONSTRAINT "t_znro_patch202_pk" PRIMARY KEY (zn_code));
 CREATE TABLE t_zsro_patch202(	zs_code VARCHAR(254) NOT NULL  REFERENCES t_zsro(zs_code),
 	zs_lt_code VARCHAR(254)   REFERENCES t_ltech(lt_code),
 	zs_lgmaxln NUMERIC(5,2)   ,
+	zs_znllong NUMERIC(5,2)   ,
 CONSTRAINT "t_zsro_patch202_pk" PRIMARY KEY (zs_code));	
 	
 CREATE TABLE t_zpbo_patch201(	zp_code VARCHAR(254) NOT NULL  REFERENCES t_zpbo(zp_code),
@@ -79,6 +80,8 @@ CREATE TABLE t_sitetech_patch202(	st_code VARCHAR(254) NOT NULL  REFERENCES t_si
 	st_commune VARCHAR (254)   ,
 	st_section VARCHAR(5)   ,
 	st_idpar VARCHAR (20)   ,
+	st_hexacle VARCHAR (254)   ,
+	st_nombat VARCHAR (254)   ,
 CONSTRAINT "t_sitetech_patch202_pk" PRIMARY KEY (st_code));	
 	
 CREATE TABLE t_ltech_patch201(	lt_code VARCHAR(254) NOT NULL  REFERENCES t_ltech(lt_code),
@@ -87,23 +90,7 @@ CREATE TABLE t_ltech_patch201(	lt_code VARCHAR(254) NOT NULL  REFERENCES t_ltech
 	lt_etage VARCHAR(20)   ,
 CONSTRAINT "t_ltech_patch201_pk" PRIMARY KEY (lt_code));	
 	
-CREATE TABLE t_ltech_patch202(	lt_code VARCHAR(254) NOT NULL  REFERENCES t_ltech(lt_code),
-	lt_nom VARCHAR(100)   ,
-	lt_typephy VARCHAR(2)   REFERENCES l_ltech_typephy(code),
-CONSTRAINT "t_ltech_patch202_pk" PRIMARY KEY (lt_code));	
-	
-CREATE TABLE t_equipement_patch202(	eq_code VARCHAR(254) NOT NULL  REFERENCES t_equipement(eq_code),
-	eq_nom VARCHAR(100)   ,
-	eq_desc VARCHAR(254)   ,
-	eq_etat VARCHAR(3)   REFERENCES l_etat_type (code),
-	eq_taille NUMERIC   ,
-	eq_placemt NUMERIC   ,
-	eq_localis VARCHAR(254)   ,
-CONSTRAINT "t_equipement_patch202_pk" PRIMARY KEY (eq_code));	
-	
 CREATE TABLE t_ptech_patch202(	pt_code VARCHAR(254) NOT NULL  REFERENCES t_ptech(pt_code),
-	pt_codepro VARCHAR(254)   ,
-	pt_codegst VARCHAR(254)   ,
 	pt_nomvoie VARCHAR (254)   ,
 	pt_numero INTEGER   ,
 	pt_rep VARCHAR (20)   ,
@@ -127,9 +114,6 @@ CREATE TABLE t_cable_patch201(	cb_code VARCHAR(254) NOT NULL  REFERENCES t_cable
 CONSTRAINT "t_cable_patch201_pk" PRIMARY KEY (cb_code));	
 	
 CREATE TABLE t_position_patch202(	ps_code VARCHAR(254) NOT NULL  REFERENCES t_position(ps_code),
-	ps_nom VARCHAR(100)   ,
-	ps_lin INTEGER   ,
-	ps_col INTEGER   ,
 	ps_usetype VARCHAR(2)   REFERENCES l_position_usetype(code),
 CONSTRAINT "t_position_patch202_pk" PRIMARY KEY (ps_code));	
 	
@@ -144,7 +128,9 @@ CREATE TABLE t_siteemission_patch202(	se_code VARCHAR(254) NOT NULL  REFERENCES 
 	se_commune VARCHAR (254)   ,
 	se_section VARCHAR(5)   ,
 	se_idpar VARCHAR (20)   ,
+	se_nombat VARCHAR (254)   ,
 CONSTRAINT "t_siteemission_patch202_pk" PRIMARY KEY (se_code));	
+
 
 
 /*###################### PATCHS 2.0.2 - INDEX ##################################*/
@@ -153,6 +139,7 @@ DROP INDEX IF EXISTS zn_lt_code_idx; CREATE INDEX  zn_lt_code_idx ON t_znro_patc
 
 
 DROP INDEX IF EXISTS zs_lt_code_idx; CREATE INDEX  zs_lt_code_idx ON t_zsro_patch202(zs_lt_code);
+
 
 
 
@@ -181,20 +168,6 @@ DROP INDEX IF EXISTS st_rf_code_idx; CREATE INDEX  st_rf_code_idx ON t_sitetech_
 
 
 
-DROP INDEX IF EXISTS lt_typephy_idx; CREATE INDEX  lt_typephy_idx ON t_ltech_patch202(lt_typephy);
-
-
-
-
-
-DROP INDEX IF EXISTS eq_etat_idx; CREATE INDEX  eq_etat_idx ON t_equipement_patch202(eq_etat);
-
-
-
-
-
-
-
 
 
 
@@ -216,9 +189,6 @@ DROP INDEX IF EXISTS cb_bp1_idx; CREATE INDEX  cb_bp1_idx ON t_cable_patch201(cb
 DROP INDEX IF EXISTS cb_ba1_idx; CREATE INDEX  cb_ba1_idx ON t_cable_patch201(cb_ba1);
 DROP INDEX IF EXISTS cb_bp2_idx; CREATE INDEX  cb_bp2_idx ON t_cable_patch201(cb_bp2);
 DROP INDEX IF EXISTS cb_ba2_idx; CREATE INDEX  cb_ba2_idx ON t_cable_patch201(cb_ba2);
-
-
-
 
 
 

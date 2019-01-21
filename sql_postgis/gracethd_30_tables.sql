@@ -1,11 +1,11 @@
-/*GraceTHD-MCD v2.0.2-beta1*/
+/*GraceTHD-MCD v2.0.2-rc1*/
 /*Creation des tables*/
 /* gracethd_30_tables.sql */
 /*PostGIS*/
 
 /* Owner : GraceTHD-Community - http://gracethd-community.github.io/ */
 /* Author : stephane dot byache at aleno dot eu */
-/* Rev. date : 25/10/2018 */
+/* Rev. date : 21/01/2019 */
 
 /* ********************************************************************
     This file is part of GraceTHD.
@@ -23,47 +23,43 @@
     You should have received a copy of the GNU General Public License
     along with GraceTHD.  If not, see <http://www.gnu.org/licenses/>.
 *********************************************************************** */
-
-
-
-SET search_path TO gracethd, public;
-
-DROP TABLE IF EXISTS t_cheminement CASCADE;
-DROP TABLE IF EXISTS t_conduite CASCADE;
-DROP TABLE IF EXISTS t_cond_chem CASCADE;
-DROP TABLE IF EXISTS t_cable CASCADE;
-DROP TABLE IF EXISTS t_cableline CASCADE;
-DROP TABLE IF EXISTS t_cab_cond CASCADE;
-DROP TABLE IF EXISTS t_fibre CASCADE;
-DROP TABLE IF EXISTS t_cassette CASCADE;
-DROP TABLE IF EXISTS t_position CASCADE;
-DROP TABLE IF EXISTS t_ropt CASCADE;
-DROP TABLE IF EXISTS t_noeud CASCADE;
-DROP TABLE IF EXISTS t_ptech CASCADE;
-DROP TABLE IF EXISTS t_masque CASCADE;
-DROP TABLE IF EXISTS t_love CASCADE;
-DROP TABLE IF EXISTS t_ebp CASCADE;
-DROP TABLE IF EXISTS t_sitetech CASCADE;
-DROP TABLE IF EXISTS t_ltech CASCADE;
-DROP TABLE IF EXISTS t_baie CASCADE;
-DROP TABLE IF EXISTS t_tiroir CASCADE;
-DROP TABLE IF EXISTS t_equipement CASCADE;
-DROP TABLE IF EXISTS t_reference CASCADE;
-DROP TABLE IF EXISTS t_suf CASCADE;
-DROP TABLE IF EXISTS t_adresse CASCADE;
-DROP TABLE IF EXISTS t_siteemission CASCADE;
-DROP TABLE IF EXISTS t_organisme CASCADE;
-DROP TABLE IF EXISTS t_znro CASCADE;
-DROP TABLE IF EXISTS t_zsro CASCADE;
-DROP TABLE IF EXISTS t_zpbo CASCADE;
-DROP TABLE IF EXISTS t_zdep CASCADE;
-DROP TABLE IF EXISTS t_zcoax CASCADE;
-DROP TABLE IF EXISTS t_document CASCADE;
-DROP TABLE IF EXISTS t_docobj CASCADE;
-DROP TABLE IF EXISTS t_empreinte CASCADE;
-
-
-
+	
+SET search_path TO gracethd, public;	
+	
+DROP TABLE IF EXISTS t_cheminement CASCADE;	
+DROP TABLE IF EXISTS t_conduite CASCADE;	
+DROP TABLE IF EXISTS t_cond_chem CASCADE;	
+DROP TABLE IF EXISTS t_cable CASCADE;	
+DROP TABLE IF EXISTS t_cableline CASCADE;	
+DROP TABLE IF EXISTS t_cab_cond CASCADE;	
+DROP TABLE IF EXISTS t_fibre CASCADE;	
+DROP TABLE IF EXISTS t_cassette CASCADE;	
+DROP TABLE IF EXISTS t_position CASCADE;	
+DROP TABLE IF EXISTS t_ropt CASCADE;	
+DROP TABLE IF EXISTS t_noeud CASCADE;	
+DROP TABLE IF EXISTS t_ptech CASCADE;	
+DROP TABLE IF EXISTS t_masque CASCADE;	
+DROP TABLE IF EXISTS t_love CASCADE;	
+DROP TABLE IF EXISTS t_ebp CASCADE;	
+DROP TABLE IF EXISTS t_sitetech CASCADE;	
+DROP TABLE IF EXISTS t_ltech CASCADE;	
+DROP TABLE IF EXISTS t_baie CASCADE;	
+DROP TABLE IF EXISTS t_tiroir CASCADE;	
+DROP TABLE IF EXISTS t_equipement CASCADE;	
+DROP TABLE IF EXISTS t_reference CASCADE;	
+DROP TABLE IF EXISTS t_suf CASCADE;	
+DROP TABLE IF EXISTS t_adresse CASCADE;	
+DROP TABLE IF EXISTS t_siteemission CASCADE;	
+DROP TABLE IF EXISTS t_organisme CASCADE;	
+DROP TABLE IF EXISTS t_znro CASCADE;	
+DROP TABLE IF EXISTS t_zsro CASCADE;	
+DROP TABLE IF EXISTS t_zpbo CASCADE;	
+DROP TABLE IF EXISTS t_zdep CASCADE;	
+DROP TABLE IF EXISTS t_zcoax CASCADE;	
+DROP TABLE IF EXISTS t_document CASCADE;	
+DROP TABLE IF EXISTS t_docobj CASCADE;	
+DROP TABLE IF EXISTS t_empreinte CASCADE;	
+	
 CREATE TABLE t_adresse(	ad_code VARCHAR (254) NOT NULL  ,
 	ad_ban_id VARCHAR (24)   ,
 	ad_nomvoie VARCHAR (254)   ,

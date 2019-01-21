@@ -1,11 +1,11 @@
-/*GraceTHD-MCD v2.0.2-beta1*/
+/*GraceTHD-MCD v2.0.2-rc1*/
 /*Insertion des valeurs dans les listes*/
 /* gracethd_20_insert.sql */
-/*Postgis*/
+/*PostGIS*/
 
 /* Owner : GraceTHD-Community - http://gracethd-community.github.io/ */
 /* Author : stephane dot byache at aleno dot eu */
-/* Rev. date : 25/10/2018 */
+/* Rev. date : 21/01/2019 */
 
 /* ********************************************************************
     This file is part of GraceTHD.
@@ -29,12 +29,12 @@ SET search_path TO gracethd, public;
 BEGIN;
 INSERT INTO l_adresse_etat VALUES ('CI', 'CIBLE', 'L adresse se situe dans la zone arriere d un PM deploye ou en cours de deploiement ou ayant fait l objet d une consultation (Interop:EtatImmeuble)');
 INSERT INTO l_adresse_etat VALUES ('RD', 'RACCORDABLE DEMANDE', 'Notion reglementaire de raccordable a la demande. Signifie que la pose du PBO peut se faire sur demande d un OC et selon les conditions specifiques definies par l OI dans son contrat  (Interop:EtatImmeuble)');
+INSERT INTO l_adresse_etat VALUES ('RC', 'RAD EN COURS DE DEPLOIEMENT', 'RAD en cours de deploiement : signifie qu une commande de PB a ete transmise par un OC sur une adresse raccordable a la demande. Toutes les adresses connues de la zone arriere du PB passent a cet etat.  (Interop:EtatImmeuble)');
 INSERT INTO l_adresse_etat VALUES ('SI', 'SIGNE', 'Une convention a ete signee avec le gestionnaire de l adresse. (Interop:EtatImmeuble)');
 INSERT INTO l_adresse_etat VALUES ('EC', 'EN COURS DE DEPLOIEMENT', 'L adresse est en cours de deploiement, sans qu une definition precise de ce terme n ait ete partagee en Interop (Interop:EtatImmeuble)');
 INSERT INTO l_adresse_etat VALUES ('DE', 'DEPLOYE', 'Signifie que l adresse est techniquement raccordable en fibre, que le PB est pose et que l adresse est mise a disposition aux operateurs commerciaux. Cet etat correspond a un etat "raccordable" au sens de la réglementation (Interop:EtatImmeuble)');
 INSERT INTO l_adresse_etat VALUES ('AB', 'ABANDONNE', 'La commercialisation de l adresse est annulee par l operateur d immeuble, quelqu en soit le motif (deconventionnement, insecurite installateur, fiabilisation des adresses, destruction de l immeuble …). (Interop:EtatImmeuble)');
 INSERT INTO l_avancement VALUES ('E', 'EXISTANT', '');
-INSERT INTO l_avancement VALUES ('P', 'PRE-ETUDE', 'Modelisation temporaire dans l attente d une etude detaillee.');
 INSERT INTO l_avancement VALUES ('C', 'A CREER', '');
 INSERT INTO l_avancement VALUES ('T', 'TRAVAUX', '');
 INSERT INTO l_avancement VALUES ('S', 'EN SERVICE', '');
@@ -286,7 +286,7 @@ INSERT INTO l_implantation_type VALUES ('8', 'EGOUT', '');
 INSERT INTO l_implantation_type VALUES ('9', 'SPECIFIQUE', '');
 INSERT INTO l_infra_nature VALUES ('ASS', 'ASSAINISSEMENT', '');
 INSERT INTO l_infra_nature VALUES ('EAU', 'EAU', '');
-INSERT INTO l_infra_nature VALUES ('ELE', 'ELECTRICITE', 'Infrastracture d energie electrique indiferienciee');
+INSERT INTO l_infra_nature VALUES ('ELE', 'ELECTRICITE', 'Infrastructure d energie electrique indiferenciee');
 INSERT INTO l_infra_nature VALUES ('EBT', 'ELECTRICITE BASSE TENSION', '');
 INSERT INTO l_infra_nature VALUES ('HTA', 'ELECTRICITE HAUTE TENSION CATEGORIE A', '');
 INSERT INTO l_infra_nature VALUES ('HTB', 'ELECTRICITE HAUTE TENSION CATEGORIE B', '');
@@ -305,8 +305,6 @@ INSERT INTO l_infra_type_log VALUES ('RA', 'RACCORDEMENT FINAL', 'Infrastructure
 INSERT INTO l_infra_type_log VALUES ('BM', 'BOUCLE METROPOLITAINE', '');
 INSERT INTO l_infra_type_log VALUES ('LH', 'LONGUE DISTANCE (LONG HAUL)', '');
 INSERT INTO l_infra_type_log VALUES ('NC', 'NON COMMUNIQUE', '');
-INSERT INTO l_ltech_typephy VALUES ('P', 'PHYSIQUE', 'Local cloisonne dedie a un usage technique');
-INSERT INTO l_ltech_typephy VALUES ('F', 'FONCTIONNEL', 'Espace defini pour un usage technique specifique mais qui n est pas physiquement un local cloisonne. ');
 INSERT INTO l_masque_face VALUES ('A', 'A', '');
 INSERT INTO l_masque_face VALUES ('B', 'B', '');
 INSERT INTO l_masque_face VALUES ('C', 'C', '');
@@ -326,7 +324,7 @@ INSERT INTO l_noeud_type VALUES ('SH ', 'SITE FTTH COMPLEXE ', 'Immeuble raccord
 INSERT INTO l_noeud_type VALUES ('SC ', 'SITE TECHNIQUE COMPLEXE ', 'Site technique accueillant d autres types d objets (PT, SE) sur le meme nœud. ');
 INSERT INTO l_noeud_type VALUES ('PC ', 'POINT TECHNIQUE COMPLEXE ', 'Noeud accueillant un point technique principal complete d autres objets (autres PT, SE). Par exemple un PT appui + un PT traverse. ');
 INSERT INTO l_noeud_type VALUES ('EC ', 'SITE EMISSION COMPLEXE', 'Noeud accueillant plusieurs sites d emission. Un site d emission correspondant a la notion de support pour l ANFR, il pourrait s agir de supports complexes sur un même support principal. ');
-INSERT INTO l_noeud_type VALUES ('SP', 'SPECIFIQUE', '');
+INSERT INTO l_noeud_type VALUES ('SP', 'SPECIFIQUE', 'A reserver a des cas de noeuds non traites par les autre types de nœuds. ');
 INSERT INTO l_nro_type VALUES ('PON', 'NRO-PON', '');
 INSERT INTO l_nro_type VALUES ('PTP', 'NRO-PTP', '');
 INSERT INTO l_nro_type VALUES ('PON-PTP', 'NRO-PON-PTP', '');
@@ -383,8 +381,7 @@ INSERT INTO l_position_type VALUES ('CTP', 'CONNECTEUR ST-PC', 'Connecteur a ver
 INSERT INTO l_position_type VALUES ('CPO', 'CONNECTEUR MT MPO', 'Fiche polymère intégrant plusieurs fibres SM ou MM. MTRJ pour la version 2 fibres. ');
 INSERT INTO l_position_type VALUES ('SFU', 'SOUDURE FUSION', 'Raccordement sous l effet d une chaleur intense avec une soudeuse. ');
 INSERT INTO l_position_type VALUES ('SME', 'SOUDURE MECANIQUE', 'Raccordement mecanique, generalement par sertissage. ');
-INSERT INTO l_position_usetype VALUES ('R', 'FTTH', 'Fibrer To The Home');
-INSERT INTO l_position_usetype VALUES ('P', 'FTTH PRO', 'Fibrer To The Home Pro');
+INSERT INTO l_position_usetype VALUES ('R', 'FTTH', 'Fiber To The Home');
 INSERT INTO l_position_usetype VALUES ('E', 'FTTE', 'Fiber To The Entreprise');
 INSERT INTO l_position_usetype VALUES ('U', 'GFU', 'Groupement Ferme d Utilisateurs. ');
 INSERT INTO l_position_usetype VALUES ('O', 'FTTO', 'Fiber To The Office');
@@ -518,6 +515,7 @@ INSERT INTO l_ptech_nature VALUES ('PIND', 'POTEAU INDETERMINE', '');
 INSERT INTO l_ptech_nature VALUES ('POTL', 'POTELET', '');
 INSERT INTO l_ptech_nature VALUES ('BOU', 'BOUCHON', '');
 INSERT INTO l_ptech_nature VALUES ('REG', 'REGARD 30X30', '');
+INSERT INTO l_ptech_nature VALUES ('R40', 'REGARD 40X40', '');
 INSERT INTO l_ptech_nature VALUES ('BAL', 'BALCON', '');
 INSERT INTO l_ptech_nature VALUES ('CRO', 'CROCHET', '');
 INSERT INTO l_ptech_nature VALUES ('FAI', 'FAITIERE', '');
@@ -566,7 +564,7 @@ INSERT INTO l_site_type_log VALUES ('SROL', 'SOUS-REPARTITEUR OPTIQUE COLOCALISE
 INSERT INTO l_site_type_log VALUES ('SROS', 'SOUS-REPARTITEURS OPTIQUES COLOCALISES', 'Sous-repartiteurs optiques colocalises. ');
 INSERT INTO l_site_type_log VALUES ('BRASSAGE', 'SITE DE BRASSAGE', 'Site non prevu pour heberger des equipements actifs (surtout longue distance)');
 INSERT INTO l_site_type_log VALUES ('CLIENT', 'SITE CLIENT', 'Site entreprise ou administration qui n est pas un site utilisateur final (SUF). ');
-INSERT INTO l_site_type_log VALUES ('FTTH', 'SITE FTTH AVEC PBI', 'Site technique qui accueille des sites utilisateurs finaux (SUF). On modélise un site technique FTTH principalement pour les habitats collectifs avec PBI (PBO Immeuble) ou PMI. ');
+INSERT INTO l_site_type_log VALUES ('FTTH', 'SITE FTTH AVEC PBI', 'Les habitats collectifs avec PBI (PBO Immeuble) ou PMI (PM Immeuble) necessitent d instancier un site technique de type logique FTTH en plus des SUF. Ce site technique permettra de placer les PBI dans des locaux techniques. ');
 INSERT INTO l_site_type_log VALUES ('HEBERG', 'SITE HEBERGEMENT', 'Site d hebergement d equipements actifs qui n est pas un NRO (hors architecture FTTH). ');
 INSERT INTO l_site_type_phy VALUES ('ADR', 'ARMOIRE DE RUE', '');
 INSERT INTO l_site_type_phy VALUES ('BAT', 'BATIMENT', '');
@@ -596,6 +594,7 @@ INSERT INTO l_suf_racco VALUES ('AB', 'ABONNE', 'Logement dont l occupant a sous
 INSERT INTO l_suf_racco VALUES ('RA', 'RACCORDE', 'Logement pour lequel il existe une continuite entre le PM et la PTO. (Interop:EtatImmeuble) ');
 INSERT INTO l_suf_racco VALUES ('RB', 'RACCORDABLE', 'Logement pour lequel il existe une continuite optique entre le PM et le PBO, ou entre le PM et la PTO si le PBO est absent. (Interop:EtatImmeuble)');
 INSERT INTO l_suf_racco VALUES ('RD', 'RACCORDABLE SUR DEMANDE', 'Deploiement differe de PBO sous certaines conditions. (Interop:EtatImmeuble)');
+INSERT INTO l_suf_racco VALUES ('RC', 'RAD EN COURS DE DEPLOIEMENT', 'RAD en cours de deploiement : signifie qu une commande de PB a ete transmise par un OC sur une adresse raccordable a la demande. Toutes les adresses connues de la zone arriere du PB passent a cet etat.  (Interop:EtatImmeuble)');
 INSERT INTO l_suf_racco VALUES ('EL', 'ELIGIBLE', 'Logement pour lequel au moins un operateur a relie le point de mutualisation a son NRO, et pour lequel il manque seulement le racco final et un eventuel  brassage au PM pour avoir une continuite optique entre le NRO et la PTO. (Interop:EtatImmeuble)');
 INSERT INTO l_suf_racco VALUES ('EM', 'ELIGIBLE MUTUALISE', 'Logement eligible pour lequel plusieurs operateurs ont relie le PM a leur NRO. (Interop:EtatImmeuble)');
 INSERT INTO l_suf_racco VALUES ('PR', 'PROGRAMME', 'Logement situe dans la zone arriere d un PM pour lequel le PM a ete installe et mis  a disposition des operateurs tiers, au sens de l annexe OO de la decision 2009-1106. (Interop:EtatImmeuble)');
