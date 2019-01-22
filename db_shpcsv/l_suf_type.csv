@@ -1,0 +1,7 @@
+code;libelle;definition
+R;RESIDENTIEL;""
+P;PROFESSIONNEL;""
+E;ENTREPRISE;Entreprise en fibre en point-à-point sur la Boucle Locale Optique Mutualisee. 
+U;GFU;SUF d un Groupement Ferme D Utilisateurs tel que defini par la decision ARCEP n°05 0208
+O;OPERATEUR;Un SUF operateur est un site exploite par un client operateur. Par exemple un point haut raccorde sur un reseau FTTH. 
+T;TECHNIQUE;Un SUF technique est un site client d un reseau FTTH mais qui n est pas un logement. Il peut s agir d une video surveillance, d un abribus connecte, etc. 
