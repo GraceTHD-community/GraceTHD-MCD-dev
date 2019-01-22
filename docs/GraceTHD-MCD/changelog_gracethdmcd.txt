@@ -7,17 +7,25 @@ v2.0.2-rc1
 ## Synthèse des principales évolutions v2.0.2-rc1
 Suite aux retours de consultation de la v2.0.2-beta1, il a été décidé de produire une release candidate 1. Concrètement ceci signifie que cette version pourrait prétendre à être la release finale. Une consultation courte permettra de remonter les derniers correctifs, mais il n'y aura plus d'ajouts fonctionnels au modèle de données. 
 
-Les retours de consultation sont composés de 56 demandes dont seulement 3 de la communauté via Redmine, 28 en interne au comité technique, 25 en collaboration étroite avec le Comité Consultatif Opérateurs et InfraNum (qui représente de nombreuses entreprises). Ils sont accessibles dans un document disponible sur Redmine : 
+Les retours de consultation sont composés de 56 demandes dont 3 de la communauté via Redmine, 28 en interne au comité technique, 25 en collaboration étroite avec le Comité Consultatif Opérateurs et InfraNum (qui représente de nombreuses entreprises). Ils sont accessibles dans un document disponible sur Redmine : 
 https://redmine.gracethd.org/redmine/documents/40
 
-Nombre d'évolutions envisagées en v2.0.2 ont été reléguées en v2.1, c'est de nouveau le cas avec cette version. 
-https://redmine.gracethd.org/redmine/projects/modele_grace/wiki/Sujets_v2x#section-3
+Résumé des principales évolutions v2.0.2-rc1 : 
+- Note précisant que la release finale de la v2.0.2 disposera de vues "preview". Ces vues permettront de disposer d'une préversion de la disposition des nouveaux attributs dans les tables principales en v2.1 qui n'aura plus de tables patch. 
+- Interop : pour ad_ietat ajout en avance de phase d'un nouvel état de l'état IPEv3.1 : "RAD EN COURS DE DEPLOIEMENT"
+- Interop : ajout de l'attribut zs_znllong qui correspond à LongueurLienPMPRDM. 
+- 3 attributs st_hexacle, st_nombat, se_nombat sont proposés pour cette consultation, aucune garantie de les retrouver en release finale. 
+- Améliorations pour les nouveaux attributs de comptage de locaux (ad_nbl*) et de fibres (ad_nbpr*). 
+- t_ltech_patch202 et t_equipement_patch202 disparaissent (v2.1 ?). 
+- Pour les positions, ps_nom, ps_lin, ps_col disparaissent (v2.1 ?). 
+- Contraintes : 1 ajout (co_1_m00025), 5 corrections, 1 suppression (co_1_m00023), 1 report (co_1_g00015).
 
 Dans ce changelog les 53 évolutions sont présentées dans 4 parties : 
-- ajouts v2.0.2-rc1 (13 ajouts)
-- corrections v2.0.2-rc1 (18 corrections)
+- ajouts v2.0.2-rc1 (11 ajouts)
+- corrections v2.0.2-rc1 (20 corrections)
 - suppressions v2.0.2-rc1 (6 suppressions)
-- Propositions d'évolutions v2.0.2-beta1 reportées en v2.1.0 (16 reports)
+- Propositions d'évolutions v2.0.2-beta1 reportées en v2.1.0 (16 reports). L'intégralité des évolutions envisagées en v2.0.2 reportées en v2.1 sont consultables sur Redmine. 
+https://redmine.gracethd.org/redmine/projects/modele_grace/wiki/Sujets_v2x#section-3
 
 Le changelog de la v2.0.2-rc1 est relatif à la v2.0.2-beta1. La v2.0.2 release finale disposera d'un changelog complet par rapport la v2.0.1. 
 
@@ -40,8 +48,6 @@ Attributs t_zsro_patch202 :
 Attributs t_sitetech_patch202 : 
 - add: st_hexacle : ajout dans le cadre du déport d'attributs de t_adresse pour répondre notamment aux contraintes réglementaires sur certains types de sites (SRO en immeuble notamment). [CCO/InfraNum 13/11/2018 CCO#9]
 - add: st_nombat : ajout dans le cadre du déport d'attributs de t_adresse (attention à l'usage conjoint avec lt_bat). [CCO/InfraNum 13/11/2018 CCO#9]
-- chg: st_section :  suppression dans la définition de « Si le site technique accueille des SUF, alors la valeur doit être égale à l’attribut ad_idpar de l’adresse de ces SUF. ». [CTC#22]
-- chg: st_idpar :  suppression dans la définition de « Si le site technique accueille des SUF, alors la valeur doit être égale à l’attribut ad_idpar de l’adresse de ces SUF. ». [CTC#22]
 
 Attributs t_siteemission_patch202 : 
 - add: se_nombat : ajout dans le cadre du déport d'attributs de t_adresse (attention à l'usage conjoint avec lt_bat). [CCO/InfraNum 13/11/2018 CCO#9]
@@ -67,6 +73,10 @@ Attributs t_adresse :
 - fix: ad_y_parc : correction de fautes dans la nouvelle définition. [CTC#4] 
 - chg: ad_nblpro : modification de la définition. Ajout "Les locaux d'entreprises (SUF) identifiés comme éligibles à une offre de raccordement spécifique (FTTE, FTTO, FON) sont comptabilisés dans l’attribut ad_nblent." [CCO/InfraNum 13/11/2018 CCO#10]
 - chg: ad_nbprpro : modification de la définition. "Nombre de fibres FTTH pro pour les locaux (SUF) professionnels." [CCO/InfraNum 13/11/2018 CCO#10]
+
+Attributs t_sitetech_patch202 :
+- chg: st_section :  suppression dans la définition de « Si le site technique accueille des SUF, alors la valeur doit être égale à l’attribut ad_idpar de l’adresse de ces SUF. ». [CTC#22]
+- chg: st_idpar :  suppression dans la définition de « Si le site technique accueille des SUF, alors la valeur doit être égale à l’attribut ad_idpar de l’adresse de ces SUF. ». [CTC#22]
 
 Attributs t_cable : 
 - chg: cb_fo_disp : modification de la définition [CCO/InfraNum 19/01/2019 CCO#22 / demande #486]
