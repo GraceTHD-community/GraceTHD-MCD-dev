@@ -11,13 +11,14 @@ Les retours de consultation sont composés de 56 demandes dont 3 de la communaut
 https://redmine.gracethd.org/redmine/documents/40
 
 Résumé des principales évolutions v2.0.2-rc1 : 
-- Note précisant que la release finale de la v2.0.2 disposera de vues "preview". Ces vues permettront de disposer d'une préversion de la disposition des nouveaux attributs dans les tables principales en v2.1 qui n'aura plus de tables patch. 
-- Interop : pour ad_ietat ajout en avance de phase d'un nouvel état de l'état IPEv3.1 : "RAD EN COURS DE DEPLOIEMENT"
-- Interop : ajout de l'attribut zs_znllong qui correspond à LongueurLienPMPRDM. 
-- 3 attributs st_hexacle, st_nombat, se_nombat sont proposés pour cette consultation, aucune garantie de les retrouver en release finale. 
+- Modification des nouvelles définitions de cb_fo_disp et cb_fo_util. 
 - Améliorations pour les nouveaux attributs de comptage de locaux (ad_nbl*) et de fibres (ad_nbpr*). 
 - t_ltech_patch202 et t_equipement_patch202 disparaissent (v2.1 ?). 
 - Pour les positions, ps_nom, ps_lin, ps_col disparaissent (v2.1 ?). 
+- Note précisant que la release finale de la v2.0.2 disposera de vues "previews" préfigurant les tables de la future v2.1 sans tables patch. 
+- Interop : pour ad_ietat ajout en avance de phase d'un nouvel état de l'état IPEv3.1 : "RAD EN COURS DE DEPLOIEMENT"
+- Interop : ajout de l'attribut zs_znllong qui correspond à LongueurLienPMPRDM. 
+- 3 attributs st_hexacle, st_nombat, se_nombat sont proposés pour cette consultation, aucune garantie de les retrouver en release finale. 
 - Contraintes : 1 ajout (co_1_m00025), 5 corrections, 1 suppression (co_1_m00023), 1 report (co_1_g00015).
 
 Dans ce changelog les 53 évolutions sont présentées dans 4 parties : 
