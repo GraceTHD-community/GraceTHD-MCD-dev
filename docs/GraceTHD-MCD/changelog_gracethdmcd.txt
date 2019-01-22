@@ -16,7 +16,6 @@ Résumé des principales évolutions v2.0.2-rc1 :
 - Interop : ajout de l'attribut zs_znllong qui correspond à LongueurLienPMPRDM. 
 - 3 attributs st_hexacle, st_nombat, se_nombat sont proposés pour cette consultation, aucune garantie de les retrouver en release finale. 
 - Améliorations pour les nouveaux attributs de comptage de locaux (ad_nbl*) et de fibres (ad_nbpr*). 
-- Modification des nouvelles définitions de cb_fo_disp et cb_fo_util. 
 - t_ltech_patch202 et t_equipement_patch202 disparaissent (v2.1 ?). 
 - Pour les positions, ps_nom, ps_lin, ps_col disparaissent (v2.1 ?). 
 - Contraintes : 1 ajout (co_1_m00025), 5 corrections, 1 suppression (co_1_m00023), 1 report (co_1_g00015).
