@@ -13,11 +13,11 @@ https://redmine.gracethd.org/redmine/documents/40
 Nombre d'évolutions envisagées en v2.0.2 ont été reléguées en v2.1, c'est de nouveau le cas avec cette version. 
 https://redmine.gracethd.org/redmine/projects/modele_grace/wiki/Sujets_v2x#section-3
 
-Le changelog est structuré en 3 parties : 
-- ajouts v2.0.2-rc1
-- corrections v2.0.2-rc1
-- suppressions v2.0.2-rc1
-- Propositions d'évolutions v2.0.2-beta1 reléguées en v2.1.0
+Dans ce changelog les 53 évolutions sont présentées dans 4 parties : 
+- ajouts v2.0.2-rc1 (13 ajouts)
+- corrections v2.0.2-rc1 (18 corrections)
+- suppressions v2.0.2-rc1 (6 suppressions)
+- Propositions d'évolutions v2.0.2-beta1 reportées en v2.1.0 (16 reports)
 
 Le changelog de la v2.0.2-rc1 est relatif à la v2.0.2-beta1. La v2.0.2 release finale disposera d'un changelog complet par rapport la v2.0.1. 
 
@@ -142,9 +142,6 @@ Géostandard :
 - Contrainte zdep à revoir. 
 - Contraintes de la grille de contraintes (reprises 2.0.2) à revoir. 
 - Contraintes de la grille de contraintes add: à ajouter. 
-- Note sur GraceTHD-Data
-- Note sur GraceTHD-Manage
-
 
 
 v2.0.2-beta1
